@@ -1,9 +1,10 @@
-import WaveBall from "./components/ball/ball";
 import { Button, Card, Collapse, ColorPicker, Flex, Form, Slider, Switch, Tabs, Tooltip } from "antd";
 import type { TabsProps } from "antd";
 import { useState } from "react";
 import "./App.css";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import WaveBall from "react-wave-progress-ball-svg";
+import "react-wave-progress-ball-svg/dist/style.css";
 
 function App() {
     const [value, setValue] = useState<number>(50);
@@ -333,7 +334,7 @@ function App() {
 }
 
 
-function ExampleCode(props: { setting: BallSetting }) {
+function ExampleCode(props:any) {
     return (
         <span
             style={{
