@@ -1,14 +1,14 @@
 import WaveBall from "react-wave-progress-ball-svg";
-import { Button, Card, Collapse, ColorPicker, Flex, Form, Slider, Switch, Tabs, Tooltip } from "antd";
+import { Button, Card, Collapse, ColorPicker, Flex, Form, Segmented, Slider, Switch, Tabs, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import type { TabsProps } from "antd";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import "react-wave-progress-ball-svg/dist/style.css";
 import "./App.css";
 
 function App() {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [value, setValue] = useState<number>(50);
     const [adaptive, setAdaptive] = useState<boolean>(false);
     const [size, setSize] = useState<number>(350);
@@ -60,22 +60,22 @@ function App() {
     const items: TabsProps["items"] = [
         {
             key: "1",
-            label: t('BasicSettings.title'),
+            label: t("BasicSettings.title"),
             children: (
                 <>
-                    <Form.Item label={t('BasicSettings.value')}>
+                    <Form.Item label={t("BasicSettings.value")}>
                         <Slider key="height" defaultValue={value} onChange={setValue} min={0} max={100} step={1} />
                     </Form.Item>
-                    <Form.Item label={t('BasicSettings.adapt')}>
+                    <Form.Item label={t("BasicSettings.adapt")}>
                         <Switch
                             value={adaptive}
                             onChange={setAdaptive}
-                            checkedChildren={t('BasicSettings.adaptToSize')}
-                            unCheckedChildren={t('BasicSettings.fixedSize')}
+                            checkedChildren={t("BasicSettings.adaptToSize")}
+                            unCheckedChildren={t("BasicSettings.fixedSize")}
                         />
                     </Form.Item>
                     {!adaptive && (
-                        <Form.Item label={t('BasicSettings.size')}>
+                        <Form.Item label={t("BasicSettings.size")}>
                             <Slider key="size" defaultValue={size} onChange={setSize} min={10} max={1000} step={1} />
                         </Form.Item>
                     )}
@@ -84,10 +84,10 @@ function App() {
         },
         {
             key: "2",
-            label: t('CircleSettings.title'),
+            label: t("CircleSettings.title"),
             children: (
                 <>
-                    <Form.Item label={t('CircleSettings.lineWidth')}>
+                    <Form.Item label={t("CircleSettings.lineWidth")}>
                         <Slider
                             key="lineWidth"
                             defaultValue={circleLineWidth}
@@ -97,7 +97,7 @@ function App() {
                             step={1}
                         />
                     </Form.Item>
-                    <Form.Item label={t('CircleSettings.color')}>
+                    <Form.Item label={t("CircleSettings.color")}>
                         <ColorPicker
                             key="circleColor"
                             value={circleColor}
@@ -110,10 +110,10 @@ function App() {
         },
         {
             key: "3",
-            label: t('WaveSettings.title'),
+            label: t("WaveSettings.title"),
             children: (
                 <>
-                    <Form.Item label={t('WaveSettings.height')}>
+                    <Form.Item label={t("WaveSettings.height")}>
                         <Slider
                             key="waveHeight"
                             defaultValue={waveHeight}
@@ -124,12 +124,12 @@ function App() {
                         />
                     </Form.Item>
                     <Flex gap="middle" wrap justify="center">
-                        <Card title={t('WaveSettings.foregroundWave')} type="inner">
+                        <Card title={t("WaveSettings.foregroundWave")} type="inner">
                             <Form.Item
                                 label={
                                     <>
-                                        {t('WaveSettings.waveSpeed')}&nbsp;
-                                        <Tooltip title={t('WaveSettings.smallFast')}>
+                                        {t("WaveSettings.waveSpeed")}&nbsp;
+                                        <Tooltip title={t("WaveSettings.smallFast")}>
                                             <QuestionCircleOutlined style={{ color: "gray" }} />
                                         </Tooltip>
                                     </>
@@ -143,7 +143,7 @@ function App() {
                                     step={0.1}
                                 />
                             </Form.Item>
-                            <Form.Item label={t('WaveSettings.waveOffsetY')}>
+                            <Form.Item label={t("WaveSettings.waveOffsetY")}>
                                 <Slider
                                     key="dy"
                                     defaultValue={waveOffsetY}
@@ -153,25 +153,25 @@ function App() {
                                     step={1}
                                 />
                             </Form.Item>
-                            <Form.Item label={t('WaveSettings.isWaveReverse')}>
+                            <Form.Item label={t("WaveSettings.isWaveReverse")}>
                                 <Switch
                                     value={reverseWave}
                                     onChange={setReverseWave}
-                                    checkedChildren={t('WaveSettings.left')}
-                                    unCheckedChildren={t('WaveSettings.right')}
+                                    checkedChildren={t("WaveSettings.left")}
+                                    unCheckedChildren={t("WaveSettings.right")}
                                 />
                             </Form.Item>
-                            <Form.Item label={t('WaveSettings.isWaveGradient')}>
+                            <Form.Item label={t("WaveSettings.isWaveGradient")}>
                                 <Switch
                                     value={isWaveGradient}
                                     onChange={setIsWaveGradient}
-                                    checkedChildren={t('WaveSettings.gradient')}
-                                    unCheckedChildren={t('WaveSettings.single')}
+                                    checkedChildren={t("WaveSettings.gradient")}
+                                    unCheckedChildren={t("WaveSettings.single")}
                                 />
                             </Form.Item>
                             {isWaveGradient ? (
                                 <>
-                                    <Form.Item label={t('WaveSettings.Gradient-start')}>
+                                    <Form.Item label={t("WaveSettings.Gradient-start")}>
                                         <ColorPicker
                                             key="Color-1-1"
                                             value={waveGradientColor.start}
@@ -183,7 +183,7 @@ function App() {
                                             showText
                                         />
                                     </Form.Item>
-                                    <Form.Item label={t('WaveSettings.Gradient-end')}>
+                                    <Form.Item label={t("WaveSettings.Gradient-end")}>
                                         <ColorPicker
                                             key="Color-1-2"
                                             value={waveGradientColor.end}
@@ -198,7 +198,7 @@ function App() {
                                 </>
                             ) : (
                                 <>
-                                    <Form.Item label={t('WaveSettings.color')}>
+                                    <Form.Item label={t("WaveSettings.color")}>
                                         <ColorPicker
                                             key="Color-1-3"
                                             value={waveColor}
@@ -209,12 +209,12 @@ function App() {
                                 </>
                             )}
                         </Card>
-                        <Card title={t('WaveSettings.backgroundWave')} type="inner">
+                        <Card title={t("WaveSettings.backgroundWave")} type="inner">
                             <Form.Item
                                 label={
                                     <>
-                                        {t('WaveSettings.waveSpeed')}&nbsp;
-                                        <Tooltip title={t('WaveSettings.smallFast')}>
+                                        {t("WaveSettings.waveSpeed")}&nbsp;
+                                        <Tooltip title={t("WaveSettings.smallFast")}>
                                             <QuestionCircleOutlined style={{ color: "gray" }} />
                                         </Tooltip>
                                     </>
@@ -228,7 +228,7 @@ function App() {
                                     step={0.1}
                                 />
                             </Form.Item>
-                            <Form.Item label={t('WaveSettings.waveOffsetX')}>
+                            <Form.Item label={t("WaveSettings.waveOffsetX")}>
                                 <Slider
                                     key="dx"
                                     defaultValue={waveBgOffsetX}
@@ -238,7 +238,7 @@ function App() {
                                     step={0.1}
                                 />
                             </Form.Item>
-                            <Form.Item label={t('WaveSettings.waveOffsetY')}>
+                            <Form.Item label={t("WaveSettings.waveOffsetY")}>
                                 <Slider
                                     key="dy-2"
                                     defaultValue={waveBgOffsetY}
@@ -248,33 +248,33 @@ function App() {
                                     step={1}
                                 />
                             </Form.Item>
-                            <Form.Item label={t('WaveSettings.bgWaveShow')}>
+                            <Form.Item label={t("WaveSettings.bgWaveShow")}>
                                 <Switch
                                     value={showWaveBg}
                                     onChange={setShowWaveBg}
-                                    checkedChildren={t('WaveSettings.show')}
-                                    unCheckedChildren={t('WaveSettings.hide')}
+                                    checkedChildren={t("WaveSettings.show")}
+                                    unCheckedChildren={t("WaveSettings.hide")}
                                 />
                             </Form.Item>
-                            <Form.Item label={t('WaveSettings.isWaveReverse')}>
+                            <Form.Item label={t("WaveSettings.isWaveReverse")}>
                                 <Switch
                                     value={reverseWaveBg}
                                     onChange={setReverseWaveBg}
-                                    checkedChildren={t('WaveSettings.left')}
-                                    unCheckedChildren={t('WaveSettings.right')}
+                                    checkedChildren={t("WaveSettings.left")}
+                                    unCheckedChildren={t("WaveSettings.right")}
                                 />
                             </Form.Item>
-                            <Form.Item label={t('WaveSettings.isWaveGradient')}>
+                            <Form.Item label={t("WaveSettings.isWaveGradient")}>
                                 <Switch
                                     value={isWaveBgGradient}
                                     onChange={setIsWaveBgGradient}
-                                    checkedChildren={t('WaveSettings.gradient')}
-                                    unCheckedChildren={t('WaveSettings.single')}
+                                    checkedChildren={t("WaveSettings.gradient")}
+                                    unCheckedChildren={t("WaveSettings.single")}
                                 />
                             </Form.Item>
                             {isWaveBgGradient ? (
                                 <>
-                                    <Form.Item label={t('WaveSettings.Gradient-start')}>
+                                    <Form.Item label={t("WaveSettings.Gradient-start")}>
                                         <ColorPicker
                                             key="Color-2-1"
                                             value={waveBgGradientColor.start}
@@ -286,7 +286,7 @@ function App() {
                                             showText
                                         />
                                     </Form.Item>
-                                    <Form.Item label={t('WaveSettings.Gradient-end')}>
+                                    <Form.Item label={t("WaveSettings.Gradient-end")}>
                                         <ColorPicker
                                             key="Color-2-2"
                                             value={waveBgGradientColor.end}
@@ -301,7 +301,7 @@ function App() {
                                 </>
                             ) : (
                                 <>
-                                    <Form.Item label={t('WaveSettings.color')}>
+                                    <Form.Item label={t("WaveSettings.color")}>
                                         <ColorPicker
                                             key="Color-2-3"
                                             value={waveBgColor}
@@ -318,21 +318,21 @@ function App() {
         },
         {
             key: "4",
-            label: t('Output.title'),
+            label: t("Output.title"),
             children: (
                 <>
                     <Button
                         block
                         type="primary"
                         onClick={() => navigator.clipboard.writeText(JSON.stringify(setting, null, 2))}>
-                        {t('Output.copy')}
+                        {t("Output.copy")}
                     </Button>
                     <code className="output">{JSON.stringify(setting, null, 2)}</code>
                     <Collapse
                         items={[
                             {
                                 key: "1",
-                                label: t('Output.example'),
+                                label: t("Output.example"),
                                 children: <ExampleCode {...setting} />,
                             },
                         ]}
@@ -345,6 +345,9 @@ function App() {
     return (
         <>
             <WaveBall value={value} {...setting} />
+            <div className="langSelector">
+                <Segmented defaultValue={i18n.language} onChange={(e)=>{i18n.changeLanguage(e)}} options={[{label:"简体中文",value:"zh"}, {label:"English",value:"en"}]} />
+            </div>
             <Tabs defaultActiveKey="1" items={items} />
         </>
     );

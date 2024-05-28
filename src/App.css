@@ -7,6 +7,10 @@
   justify-content: center;
 }
 
+.langSelector{
+  margin: 10px 0;
+}
+
 .output{
   white-space: pre-wrap;
   display: block;
