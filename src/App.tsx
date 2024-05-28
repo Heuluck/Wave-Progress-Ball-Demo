@@ -346,7 +346,7 @@ function App() {
         <>
             <WaveBall value={value} {...setting} />
             <div className="langSelector">
-                <Segmented defaultValue={i18n.language} onChange={(e)=>{i18n.changeLanguage(e)}} options={[{label:"简体中文",value:"zh"}, {label:"English",value:"en"}]} />
+                <Segmented defaultValue={i18n.language} onChange={(e)=>{i18n.changeLanguage(e)}} options={[{label:"简体中文",value:"zh-CN"}, {label:"English",value:"en"}]} />
             </div>
             <Tabs defaultActiveKey="1" items={items} />
         </>
@@ -381,54 +381,54 @@ export function ExampleBall(){
     );
 }
 
-export interface BallSetting {
-    /** 自{t('src.App.838473-1')} */
+interface BallSetting {
+    /** 自适应大小 */
     adaptive: boolean;
     /** 圆环的半径 */
     size: number;
-    /** 圆环的{t('src.App.838473-21')} */
+    /** 圆环的颜色 */
     circleColor: string;
     /** 圆环线条的宽度 */
     circleLineWidth: number;
     /** 波浪的高度 */
     waveHeight: number;
-    /** 是否启用波浪{t('src.App.838473-17')}效果 */
+    /** 是否启用波浪渐变效果 */
     isWaveGradient: boolean;
-    /** 是否启用{t('src.App.838473-22')}{t('src.App.838473-17')}效果 */
+    /** 是否启用背景波浪渐变效果 */
     isWaveBgGradient: boolean;
-    /** 波浪的{t('src.App.838473-21')} */
+    /** 波浪的颜色 */
     waveColor: string;
-    /** {t('src.App.838473-22')}的{t('src.App.838473-21')} */
+    /** 背景波浪的颜色 */
     waveBgColor: string;
-    /** 波浪{t('src.App.838473-17')}色的起始和{t('src.App.838473-20')} */
+    /** 波浪渐变色的起始和结束颜色 */
     waveGradientColor: {
-        /** {t('src.App.838473-17')}的起始{t('src.App.838473-21')} */
+        /** 渐变的起始颜色 */
         start: string;
-        /** {t('src.App.838473-17')}的{t('src.App.838473-20')} */
+        /** 渐变的结束颜色 */
         end: string;
     };
-    /** {t('src.App.838473-22')}{t('src.App.838473-17')}色的起始和{t('src.App.838473-20')} */
+    /** 背景波浪渐变色的起始和结束颜色 */
     waveBgGradientColor: {
-        /** {t('src.App.838473-22')}{t('src.App.838473-17')}的起始{t('src.App.838473-21')} */
+        /** 背景波浪渐变的起始颜色 */
         start: string;
-        /** {t('src.App.838473-22')}{t('src.App.838473-17')}的{t('src.App.838473-20')} */
+        /** 背景波浪渐变的结束颜色 */
         end: string;
     };
     /** 波浪的移动速度 */
     waveSpeed: number;
-    /** {t('src.App.838473-22')}的移动速度 */
+    /** 背景波浪的移动速度 */
     waveBgSpeed: number;
     /** 波浪的垂直偏移量 */
     waveOffsetY: number;
-    /** {t('src.App.838473-22')}的垂直偏移量 */
+    /** 背景波浪的垂直偏移量 */
     waveBgOffsetY: number;
-    /** {t('src.App.838473-22')}的水平偏移量 */
+    /** 背景波浪的水平偏移量 */
     waveBgOffsetX: number;
-    /** {t('src.App.838473-24')}{t('src.App.838473-22')} */
+    /** 是否显示背景波浪 */
     showWaveBg: boolean;
-    /** 是否{t('src.App.838473-13')} */
+    /** 是否反转波浪 */
     reverseWave: boolean;
-    /** 是否反转{t('src.App.838473-22')} */
+    /** 是否反转背景波浪 */
     reverseWaveBg: boolean;
 }
 
