@@ -8,6 +8,7 @@ import "react-wave-progress-ball-svg/dist/style.css";
 
 function App() {
     const [value, setValue] = useState<number>(50);
+    const [adaptive, setAdaptive] = useState<boolean>(false);
     const [size, setSize] = useState<number>(350);
     const [circleColor, setCircleColor] = useState<string>("#bdc3c7");
     const [circleLineWidth, setCircleLineWidth] = useState<number>(1);
@@ -34,6 +35,7 @@ function App() {
     const [reverseWaveBg, setReverseWaveBg] = useState<boolean>(false);
     const setting = {
         size,
+        adaptive,
         circleColor,
         circleLineWidth,
         waveHeight,
@@ -62,9 +64,19 @@ function App() {
                     <Form.Item label="液面高度">
                         <Slider key="height" defaultValue={value} onChange={setValue} min={0} max={100} step={1} />
                     </Form.Item>
-                    <Form.Item label="球的大小">
-                        <Slider key="size" defaultValue={size} onChange={setSize} min={10} max={1000} step={1} />
+                    <Form.Item label="是否自适应外框大小">
+                        <Switch
+                            value={adaptive}
+                            onChange={setAdaptive}
+                            checkedChildren="适应大小"
+                            unCheckedChildren="固定大小"
+                        />
                     </Form.Item>
+                    {!adaptive && (
+                        <Form.Item label="球的大小">
+                            <Slider key="size" defaultValue={size} onChange={setSize} min={10} max={1000} step={1} />
+                        </Form.Item>
+                    )}
                 </>
             ),
         },
@@ -307,7 +319,10 @@ function App() {
             label: "导出设置",
             children: (
                 <>
-                    <Button block type="primary" onClick={() => navigator.clipboard.writeText(JSON.stringify(setting, null, 2))}>
+                    <Button
+                        block
+                        type="primary"
+                        onClick={() => navigator.clipboard.writeText(JSON.stringify(setting, null, 2))}>
                         复制
                     </Button>
                     <span className="output">{JSON.stringify(setting, null, 2)}</span>
@@ -333,8 +348,7 @@ function App() {
     );
 }
 
-
-function ExampleCode(props:any) {
+function ExampleCode(props: any) {
     return (
         <span
             style={{
