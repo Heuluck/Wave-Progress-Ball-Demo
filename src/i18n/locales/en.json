@@ -1,10 +1,42 @@
 {
     "BasicSettings": {
         "title": "Basic Settings",
-        "value": "Completion Percentage",
+        "value": "Completion percentage",
         "adapt": "Is adapt to size",
         "adaptToSize": "Adapt",
         "fixedSize": "Fix",
         "size": "Size"
+    },
+    "CircleSettings": {
+        "title": "Outline settings",
+        "lineWidth": "Outline width",
+        "color": "Outline color"
+    },
+    "WaveSettings": {
+        "title": "Wave Settings",
+        "height": "Wave height",
+        "foregroundWave": "Foreground Wave",
+        "waveSpeed": "Wave speed",
+        "smallFast": "The smaller, the faster",
+        "waveOffsetY": "Y-axis offset",
+        "isWaveReverse": "Reverse movement",
+        "left": "Shift left",
+        "right": "Shift right",
+        "isWaveGradient": "Gradient",
+        "gradient": "Gradient",
+        "single": "Monochrome",
+        "Gradient-start": "Gradient start color",
+        "Gradient-end": "Gradient end color",
+        "color": "Color",
+        "backgroundWave": "background Wave",
+        "waveOffsetX": "X-axis offset",
+        "bgWaveShow": "Visibility",
+        "show": "Display",
+        "hide": "Hide"
+    },
+    "Output":{
+        "title": "Output",
+		"copy": "Copy",
+		"example": "Example"
     }
 }
