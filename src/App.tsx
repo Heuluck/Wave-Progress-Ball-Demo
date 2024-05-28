@@ -1,12 +1,14 @@
-import { Button, Card, Collapse, ColorPicker, Flex, Form, Slider, Switch, Tabs, Tooltip } from "antd";
-import type { TabsProps } from "antd";
-import { useState } from "react";
-import "./App.css";
-import { QuestionCircleOutlined } from "@ant-design/icons";
 import WaveBall from "react-wave-progress-ball-svg";
+import { Button, Card, Collapse, ColorPicker, Flex, Form, Slider, Switch, Tabs, Tooltip } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import type { TabsProps } from "antd";
+import { useTranslation } from 'react-i18next';
 import "react-wave-progress-ball-svg/dist/style.css";
+import "./App.css";
 
 function App() {
+    const { t } = useTranslation();
     const [value, setValue] = useState<number>(50);
     const [adaptive, setAdaptive] = useState<boolean>(false);
     const [size, setSize] = useState<number>(350);
@@ -58,22 +60,22 @@ function App() {
     const items: TabsProps["items"] = [
         {
             key: "1",
-            label: "基本设置",
+            label: t('BasicSettings.title'),
             children: (
                 <>
-                    <Form.Item label="液面高度">
+                    <Form.Item label={t('BasicSettings.value')}>
                         <Slider key="height" defaultValue={value} onChange={setValue} min={0} max={100} step={1} />
                     </Form.Item>
-                    <Form.Item label="是否自适应外框大小">
+                    <Form.Item label={t('BasicSettings.adapt')}>
                         <Switch
                             value={adaptive}
                             onChange={setAdaptive}
-                            checkedChildren="适应大小"
-                            unCheckedChildren="固定大小"
+                            checkedChildren={t('BasicSettings.adaptToSize')}
+                            unCheckedChildren={t('BasicSettings.fixedSize')}
                         />
                     </Form.Item>
                     {!adaptive && (
-                        <Form.Item label="球的大小">
+                        <Form.Item label={t('BasicSettings.size')}>
                             <Slider key="size" defaultValue={size} onChange={setSize} min={10} max={1000} step={1} />
                         </Form.Item>
                     )}
@@ -82,10 +84,10 @@ function App() {
         },
         {
             key: "2",
-            label: "外框设置",
+            label: t('CircleSettings.title'),
             children: (
                 <>
-                    <Form.Item label="外框宽度">
+                    <Form.Item label={t('CircleSettings.lineWidth')}>
                         <Slider
                             key="lineWidth"
                             defaultValue={circleLineWidth}
@@ -95,7 +97,7 @@ function App() {
                             step={1}
                         />
                     </Form.Item>
-                    <Form.Item label="外框颜色">
+                    <Form.Item label={t('CircleSettings.color')}>
                         <ColorPicker
                             key="circleColor"
                             value={circleColor}
@@ -108,10 +110,10 @@ function App() {
         },
         {
             key: "3",
-            label: "波浪设置",
+            label: t('WaveSettings.title'),
             children: (
                 <>
-                    <Form.Item label="波浪高度">
+                    <Form.Item label={t('WaveSettings.height')}>
                         <Slider
                             key="waveHeight"
                             defaultValue={waveHeight}
@@ -122,12 +124,12 @@ function App() {
                         />
                     </Form.Item>
                     <Flex gap="middle" wrap justify="center">
-                        <Card title="前景波浪" type="inner">
+                        <Card title={t('WaveSettings.foregroundWave')} type="inner">
                             <Form.Item
                                 label={
                                     <>
-                                        波浪速度&nbsp;
-                                        <Tooltip title="越小越快">
+                                        {t('WaveSettings.waveSpeed')}&nbsp;
+                                        <Tooltip title={t('WaveSettings.smallFast')}>
                                             <QuestionCircleOutlined style={{ color: "gray" }} />
                                         </Tooltip>
                                     </>
@@ -141,7 +143,7 @@ function App() {
                                     step={0.1}
                                 />
                             </Form.Item>
-                            <Form.Item label="波浪Y轴偏移">
+                            <Form.Item label={t('WaveSettings.waveOffsetY')}>
                                 <Slider
                                     key="dy"
                                     defaultValue={waveOffsetY}
@@ -151,25 +153,25 @@ function App() {
                                     step={1}
                                 />
                             </Form.Item>
-                            <Form.Item label="反转波浪">
+                            <Form.Item label={t('WaveSettings.isWaveReverse')}>
                                 <Switch
                                     value={reverseWave}
                                     onChange={setReverseWave}
-                                    checkedChildren="左移"
-                                    unCheckedChildren="右移"
+                                    checkedChildren={t('WaveSettings.left')}
+                                    unCheckedChildren={t('WaveSettings.right')}
                                 />
                             </Form.Item>
-                            <Form.Item label="是否渐变">
+                            <Form.Item label={t('WaveSettings.isWaveGradient')}>
                                 <Switch
                                     value={isWaveGradient}
                                     onChange={setIsWaveGradient}
-                                    checkedChildren="渐变"
-                                    unCheckedChildren="单色"
+                                    checkedChildren={t('WaveSettings.gradient')}
+                                    unCheckedChildren={t('WaveSettings.single')}
                                 />
                             </Form.Item>
                             {isWaveGradient ? (
                                 <>
-                                    <Form.Item label="开始颜色">
+                                    <Form.Item label={t('WaveSettings.Gradient-start')}>
                                         <ColorPicker
                                             key="Color-1-1"
                                             value={waveGradientColor.start}
@@ -181,7 +183,7 @@ function App() {
                                             showText
                                         />
                                     </Form.Item>
-                                    <Form.Item label="结束颜色">
+                                    <Form.Item label={t('WaveSettings.Gradient-end')}>
                                         <ColorPicker
                                             key="Color-1-2"
                                             value={waveGradientColor.end}
@@ -196,7 +198,7 @@ function App() {
                                 </>
                             ) : (
                                 <>
-                                    <Form.Item label="颜色">
+                                    <Form.Item label={t('WaveSettings.color')}>
                                         <ColorPicker
                                             key="Color-1-3"
                                             value={waveColor}
@@ -207,12 +209,12 @@ function App() {
                                 </>
                             )}
                         </Card>
-                        <Card title="背景波浪" type="inner">
+                        <Card title={t('WaveSettings.backgroundWave')} type="inner">
                             <Form.Item
                                 label={
                                     <>
-                                        波浪速度&nbsp;
-                                        <Tooltip title="越小越快">
+                                        {t('WaveSettings.waveSpeed')}&nbsp;
+                                        <Tooltip title={t('WaveSettings.smallFast')}>
                                             <QuestionCircleOutlined style={{ color: "gray" }} />
                                         </Tooltip>
                                     </>
@@ -226,7 +228,7 @@ function App() {
                                     step={0.1}
                                 />
                             </Form.Item>
-                            <Form.Item label="波浪X轴偏移">
+                            <Form.Item label={t('WaveSettings.waveOffsetX')}>
                                 <Slider
                                     key="dx"
                                     defaultValue={waveBgOffsetX}
@@ -236,7 +238,7 @@ function App() {
                                     step={0.1}
                                 />
                             </Form.Item>
-                            <Form.Item label="波浪Y轴偏移">
+                            <Form.Item label={t('WaveSettings.waveOffsetY')}>
                                 <Slider
                                     key="dy-2"
                                     defaultValue={waveBgOffsetY}
@@ -246,33 +248,33 @@ function App() {
                                     step={1}
                                 />
                             </Form.Item>
-                            <Form.Item label="是否显示">
+                            <Form.Item label={t('WaveSettings.bgWaveShow')}>
                                 <Switch
                                     value={showWaveBg}
                                     onChange={setShowWaveBg}
-                                    checkedChildren="显示"
-                                    unCheckedChildren="隐藏"
+                                    checkedChildren={t('WaveSettings.show')}
+                                    unCheckedChildren={t('WaveSettings.hide')}
                                 />
                             </Form.Item>
-                            <Form.Item label="反转波浪">
+                            <Form.Item label={t('WaveSettings.isWaveReverse')}>
                                 <Switch
                                     value={reverseWaveBg}
                                     onChange={setReverseWaveBg}
-                                    checkedChildren="左移"
-                                    unCheckedChildren="右移"
+                                    checkedChildren={t('WaveSettings.left')}
+                                    unCheckedChildren={t('WaveSettings.right')}
                                 />
                             </Form.Item>
-                            <Form.Item label="是否渐变">
+                            <Form.Item label={t('WaveSettings.isWaveGradient')}>
                                 <Switch
                                     value={isWaveBgGradient}
                                     onChange={setIsWaveBgGradient}
-                                    checkedChildren="渐变"
-                                    unCheckedChildren="单色"
+                                    checkedChildren={t('WaveSettings.gradient')}
+                                    unCheckedChildren={t('WaveSettings.single')}
                                 />
                             </Form.Item>
                             {isWaveBgGradient ? (
                                 <>
-                                    <Form.Item label="开始颜色">
+                                    <Form.Item label={t('WaveSettings.Gradient-start')}>
                                         <ColorPicker
                                             key="Color-2-1"
                                             value={waveBgGradientColor.start}
@@ -284,7 +286,7 @@ function App() {
                                             showText
                                         />
                                     </Form.Item>
-                                    <Form.Item label="结束颜色">
+                                    <Form.Item label={t('WaveSettings.Gradient-end')}>
                                         <ColorPicker
                                             key="Color-2-2"
                                             value={waveBgGradientColor.end}
@@ -299,7 +301,7 @@ function App() {
                                 </>
                             ) : (
                                 <>
-                                    <Form.Item label="颜色">
+                                    <Form.Item label={t('WaveSettings.color')}>
                                         <ColorPicker
                                             key="Color-2-3"
                                             value={waveBgColor}
@@ -316,22 +318,22 @@ function App() {
         },
         {
             key: "4",
-            label: "导出设置",
+            label: t('Output.title'),
             children: (
                 <>
                     <Button
                         block
                         type="primary"
                         onClick={() => navigator.clipboard.writeText(JSON.stringify(setting, null, 2))}>
-                        复制
+                        {t('Output.copy')}
                     </Button>
-                    <span className="output">{JSON.stringify(setting, null, 2)}</span>
+                    <code className="output">{JSON.stringify(setting, null, 2)}</code>
                     <Collapse
                         items={[
                             {
                                 key: "1",
-                                label: "使用示例",
-                                children: <ExampleCode setting={setting} />,
+                                label: t('Output.example'),
+                                children: <ExampleCode {...setting} />,
                             },
                         ]}
                     />
@@ -348,9 +350,9 @@ function App() {
     );
 }
 
-function ExampleCode(props: any) {
+function ExampleCode(props: BallSetting) {
     return (
-        <span
+        <code
             style={{
                 textAlign: "left",
                 userSelect: "text",
@@ -359,9 +361,12 @@ function ExampleCode(props: any) {
                 padding: "8px",
                 borderRadius: "8px",
             }}>
-            {`export function ExampleBall(){
+            {`import WaveBall from "react-wave-progress-ball-svg";
+import "react-wave-progress-ball-svg/dist/style.css";
+
+export function ExampleBall(){
   const [value, setValue] = useState(50)
-  const settings = ${JSON.stringify(props.setting, null, 2)}
+  const settings = ${JSON.stringify(props, null, 2)}
   return (
       <>
           <WaveBall value={value} {...settings} />
@@ -369,8 +374,59 @@ function ExampleCode(props: any) {
   )
 }
 `}
-        </span>
+        </code>
     );
+}
+
+export interface BallSetting {
+    /** 自{t('src.App.838473-1')} */
+    adaptive: boolean;
+    /** 圆环的半径 */
+    size: number;
+    /** 圆环的{t('src.App.838473-21')} */
+    circleColor: string;
+    /** 圆环线条的宽度 */
+    circleLineWidth: number;
+    /** 波浪的高度 */
+    waveHeight: number;
+    /** 是否启用波浪{t('src.App.838473-17')}效果 */
+    isWaveGradient: boolean;
+    /** 是否启用{t('src.App.838473-22')}{t('src.App.838473-17')}效果 */
+    isWaveBgGradient: boolean;
+    /** 波浪的{t('src.App.838473-21')} */
+    waveColor: string;
+    /** {t('src.App.838473-22')}的{t('src.App.838473-21')} */
+    waveBgColor: string;
+    /** 波浪{t('src.App.838473-17')}色的起始和{t('src.App.838473-20')} */
+    waveGradientColor: {
+        /** {t('src.App.838473-17')}的起始{t('src.App.838473-21')} */
+        start: string;
+        /** {t('src.App.838473-17')}的{t('src.App.838473-20')} */
+        end: string;
+    };
+    /** {t('src.App.838473-22')}{t('src.App.838473-17')}色的起始和{t('src.App.838473-20')} */
+    waveBgGradientColor: {
+        /** {t('src.App.838473-22')}{t('src.App.838473-17')}的起始{t('src.App.838473-21')} */
+        start: string;
+        /** {t('src.App.838473-22')}{t('src.App.838473-17')}的{t('src.App.838473-20')} */
+        end: string;
+    };
+    /** 波浪的移动速度 */
+    waveSpeed: number;
+    /** {t('src.App.838473-22')}的移动速度 */
+    waveBgSpeed: number;
+    /** 波浪的垂直偏移量 */
+    waveOffsetY: number;
+    /** {t('src.App.838473-22')}的垂直偏移量 */
+    waveBgOffsetY: number;
+    /** {t('src.App.838473-22')}的水平偏移量 */
+    waveBgOffsetX: number;
+    /** {t('src.App.838473-24')}{t('src.App.838473-22')} */
+    showWaveBg: boolean;
+    /** 是否{t('src.App.838473-13')} */
+    reverseWave: boolean;
+    /** 是否反转{t('src.App.838473-22')} */
+    reverseWaveBg: boolean;
 }
 
 export default App;

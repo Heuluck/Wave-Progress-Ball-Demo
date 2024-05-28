@@ -1,0 +1,10 @@
+{
+    "BasicSettings": {
+        "title": "Basic Settings",
+        "value": "Completion Percentage",
+        "adapt": "Is adapt to size",
+        "adaptToSize": "Adapt",
+        "fixedSize": "Fix",
+        "size": "Size"
+    }
+}

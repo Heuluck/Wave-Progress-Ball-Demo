@@ -1,0 +1,42 @@
+{
+    "BasicSettings": {
+        "title": "基本设置",
+        "value": "液面高度",
+        "adapt": "是否自适应外框大小",
+        "adaptToSize": "适应大小",
+        "fixedSize": "固定大小",
+        "size": "球的大小"
+    },
+    "CircleSettings": {
+        "title": "外框设置",
+        "lineWidth": "外框宽度",
+        "color": "外框颜色"
+    },
+    "WaveSettings": {
+        "title": "波浪设置",
+        "height": "波浪高度",
+        "foregroundWave": "前景波浪",
+        "waveSpeed": "波浪速度",
+        "smallFast": "越小越快",
+        "waveOffsetY": "波浪Y轴偏移",
+        "isWaveReverse": "反转波浪",
+        "left": "左移",
+        "right": "右移",
+        "isWaveGradient": "是否渐变",
+        "gradient": "渐变",
+        "single": "单色",
+        "Gradient-start": "开始颜色",
+        "Gradient-end": "结束颜色",
+        "color": "颜色",
+        "backgroundWave": "背景波浪",
+        "waveOffsetX": "波浪X轴偏移",
+        "bgWaveShow": "是否显示",
+        "show": "显示",
+        "hide": "隐藏"
+    },
+    "Output":{
+        "title": "导出设置",
+		"copy": "复制",
+		"example": "使用示例"
+    }
+}
