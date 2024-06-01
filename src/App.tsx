@@ -1,5 +1,5 @@
 import WaveBall from "react-wave-progress-ball-svg";
-import { Button, Card, Collapse, ColorPicker, Flex, Form, Segmented, Slider, Switch, Tabs, Tooltip } from "antd";
+import { Button, Card, Collapse, ColorPicker, Flex, Form, Segmented, Slider, Space, Switch, Tabs, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import type { TabsProps } from "antd";
@@ -11,6 +11,7 @@ function App() {
     const { t, i18n } = useTranslation();
     const [value, setValue] = useState<number>(50);
     const [adaptive, setAdaptive] = useState<boolean>(false);
+    const [bgColor, setBgColor] = useState<string>("transparent");
     const [size, setSize] = useState<number>(350);
     const [circleColor, setCircleColor] = useState<string>("#bdc3c7");
     const [circleLineWidth, setCircleLineWidth] = useState<number>(1);
@@ -37,6 +38,7 @@ function App() {
     const [reverseWaveBg, setReverseWaveBg] = useState<boolean>(false);
     const setting = {
         size,
+        bgColor,
         adaptive,
         circleColor,
         circleLineWidth,
@@ -96,6 +98,23 @@ function App() {
                             max={10}
                             step={1}
                         />
+                    </Form.Item>
+                    <Form.Item label={t("CircleSettings.color")}>
+                        <Space>
+                        <Switch
+                            value={bgColor !== "transparent"}
+                            onChange={(value)=>setBgColor(value ? "#E8E8E8":"transparent")}
+                            unCheckedChildren={t("CircleSettings.transparent")}
+                            checkedChildren={t("CircleSettings.filled")}
+                        />
+                        {bgColor !== "transparent" && (
+                            <ColorPicker
+                                key="circleBgColor"
+                                value={bgColor}
+                                onChange={(color) => setBgColor(color.toRgbString())}
+                                showText
+                            />
+                        )}</Space>
                     </Form.Item>
                     <Form.Item label={t("CircleSettings.color")}>
                         <ColorPicker
@@ -346,7 +365,16 @@ function App() {
         <>
             <WaveBall value={value} {...setting} />
             <div className="langSelector">
-                <Segmented defaultValue={i18n.language} onChange={(e)=>{i18n.changeLanguage(e)}} options={[{label:"简体中文",value:"zh-CN"}, {label:"English",value:"en"}]} />
+                <Segmented
+                    defaultValue={i18n.language}
+                    onChange={(e) => {
+                        i18n.changeLanguage(e);
+                    }}
+                    options={[
+                        { label: "简体中文", value: "zh-CN" },
+                        { label: "English", value: "en" },
+                    ]}
+                />
             </div>
             <Tabs defaultActiveKey="1" items={items} />
         </>
@@ -364,7 +392,8 @@ function ExampleCode(props: BallSetting) {
                 padding: "8px",
                 borderRadius: "8px",
             }}>
-            {`import WaveBall from "react-wave-progress-ball-svg";
+            {`import { useState } from "react";
+import WaveBall from "react-wave-progress-ball-svg";
 import "react-wave-progress-ball-svg/dist/style.css";
 
 export function ExampleBall(){
@@ -384,6 +413,8 @@ export function ExampleBall(){
 interface BallSetting {
     /** 自适应大小 */
     adaptive: boolean;
+    /** 背景 */
+    bgColor: string;
     /** 圆环的半径 */
     size: number;
     /** 圆环的颜色 */

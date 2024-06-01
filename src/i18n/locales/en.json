@@ -10,6 +10,8 @@
     "CircleSettings": {
         "title": "Outline settings",
         "lineWidth": "Outline width",
+        "transparent": "Transparent",
+        "filled": "Filled",
         "color": "Outline color"
     },
     "WaveSettings": {
@@ -34,9 +36,9 @@
         "show": "Display",
         "hide": "Hide"
     },
-    "Output":{
+    "Output": {
         "title": "Output",
-		"copy": "Copy",
-		"example": "Example"
+        "copy": "Copy",
+        "example": "Example"
     }
 }

@@ -10,6 +10,8 @@
     "CircleSettings": {
         "title": "外框设置",
         "lineWidth": "外框宽度",
+        "transparent": "透明",
+        "filled": "填充",
         "color": "外框颜色"
     },
     "WaveSettings": {
