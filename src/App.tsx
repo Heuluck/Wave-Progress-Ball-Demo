@@ -99,7 +99,7 @@ function App() {
                             step={1}
                         />
                     </Form.Item>
-                    <Form.Item label={t("CircleSettings.color")}>
+                    <Form.Item label={t("CircleSettings.bgColor")}>
                         <Space>
                         <Switch
                             value={bgColor !== "transparent"}

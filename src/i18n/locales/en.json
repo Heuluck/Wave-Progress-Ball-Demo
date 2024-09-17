@@ -12,6 +12,7 @@
         "lineWidth": "Outline width",
         "transparent": "Transparent",
         "filled": "Filled",
+        "bgColor": "Background Color",
         "color": "Outline color"
     },
     "WaveSettings": {

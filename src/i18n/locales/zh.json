@@ -12,6 +12,7 @@
         "lineWidth": "外框宽度",
         "transparent": "透明",
         "filled": "填充",
+        "bgColor": "背景颜色",
         "color": "外框颜色"
     },
     "WaveSettings": {
